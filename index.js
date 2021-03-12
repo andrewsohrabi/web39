@@ -7,18 +7,19 @@ const express = require('express')
 
 const server = express()
 server.use(express.json())
-server.use(express.static(path.join(__dirname, 'client/build'))) // build absolute path to client regardless of machine
+// build absolute path to client regardless of machine
+server.use(express.static(path.join(__dirname, 'client/build'))) 
 
 console.log('env:',process.env.NODE_ENV)
-
-if (process.env.NODE_ENV === 'development') { // on Heroku machine, an env variable is called "NODE_ENV" --< 'production'
+// on Heroku machine, an env variable is called "NODE_ENV" --< 'production'
+if (process.env.NODE_ENV === 'development') { 
     const cors = require('cors')
     server.use(cors())
 }
 
 // our API comes earlier in the pipeline
 server.get('/api/hello', (req,res)=> {
-    res.json({message:'hello'})
+    res.json({message:'i love you all'})
 })
 
 // catch all that just sends back index.html
